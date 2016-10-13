@@ -31,7 +31,7 @@ architecture arqInstruction_Memory of instruction_Memory is
 	signal instructions : rom_type := InitRomFromFile("instrucciones.txt");
 	
 begin
-	process(reset,address, instructions)--clk
+	process(reset,address, instructions)
 	begin
 		
 			if(reset = '1')then
