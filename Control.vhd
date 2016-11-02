@@ -9,7 +9,7 @@ entity Control is
            ALUOP : out  STD_LOGIC_VECTOR (5 downto 0));
 end Control;
 
-architecture arqUnidadControl of Control is
+architecture arqControl of Control is
 
 begin
 	

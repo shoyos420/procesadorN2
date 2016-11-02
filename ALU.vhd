@@ -6,7 +6,6 @@ entity ALU is
     Port ( operando1 : in  STD_LOGIC_VECTOR (31 downto 0);
            operando2 : in  STD_LOGIC_VECTOR (31 downto 0);
            aluOP : in  STD_LOGIC_VECTOR (5 downto 0);
-           --carry : in  STD_LOGIC;
            AluResult : out  STD_LOGIC_VECTOR (31 downto 0));
 end ALU;
 

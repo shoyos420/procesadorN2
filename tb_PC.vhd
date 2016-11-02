@@ -54,7 +54,7 @@ BEGIN
    begin		
       -- hold reset state for 100 ns.
       wait for 100 ns;	
-		address <= x"09420000";
+		address <= x"00000020";
 		
 		wait for 100ns;
 		
