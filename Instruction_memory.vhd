@@ -3,15 +3,14 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
 use std.textio.all;
 
-entity instructionMemory is
+entity instruction_Memory is
     Port ( 
-			  
 			  address : in  STD_LOGIC_VECTOR (31 downto 0);
            reset : in  STD_LOGIC;
            outInstruction : out  STD_LOGIC_VECTOR (31 downto 0));
-end instructionMemory;
+end instruction_Memory;
 
-architecture arqInstructionMemory of instructionMemory is
+architecture arqInstruction_Memory of instruction_Memory is
 
 	type rom_type is array (0 to 63) of std_logic_vector (31 downto 0);
 		
@@ -42,4 +41,4 @@ begin
 			end if;
 		
 	end process;
-end arqInstructionMemory;
+end arqInstruction_Memory;
