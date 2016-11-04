@@ -43,7 +43,7 @@ ARCHITECTURE behavior OF tb_nPC IS
     PORT(
          address : IN  std_logic_vector(31 downto 0);
          reset : IN  std_logic;
-         clkFPGA : IN  std_logic;
+         clk : IN  std_logic;
          nextInstruction : OUT  std_logic_vector(31 downto 0)
         );
     END COMPONENT;
@@ -52,13 +52,13 @@ ARCHITECTURE behavior OF tb_nPC IS
    --Inputs
    signal address : std_logic_vector(31 downto 0) := (others => '0');
    signal reset : std_logic := '0';
-   signal clkFPGA : std_logic := '0';
+   signal clk : std_logic := '0';
 
  	--Outputs
    signal nextInstruction : std_logic_vector(31 downto 0);
 
    -- Clock period definitions
-   constant clkFPGA_period : time := 10 ns;
+   constant clk_period : time := 10 ns;
  
 BEGIN
  
@@ -66,17 +66,17 @@ BEGIN
    uut: nPC PORT MAP (
           address => address,
           reset => reset,
-          clkFPGA => clkFPGA,
+          clk => clk,
           nextInstruction => nextInstruction
         );
 
    -- Clock process definitions
-   clkFPGA_process :process
+   clk_process :process
    begin
-		clkFPGA <= '0';
-		wait for clkFPGA_period/2;
-		clkFPGA <= '1';
-		wait for clkFPGA_period/2;
+		clk <= '0';
+		wait for clk_period/2;
+		clk <= '1';
+		wait for clk_period/2;
    end process;
  
 

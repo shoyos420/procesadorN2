@@ -10,7 +10,7 @@ ARCHITECTURE behavior OF tb_instructionMemory IS
  
     COMPONENT instructionMemory
     PORT(
-         clk : IN  std_logic;
+         --clk : IN  std_logic;
          address : IN  std_logic_vector(31 downto 0);
          reset : IN  std_logic;
          outInstruction : OUT  std_logic_vector(31 downto 0)
@@ -19,7 +19,7 @@ ARCHITECTURE behavior OF tb_instructionMemory IS
     
 
    --Inputs
-   signal clk : std_logic := '0';
+   --signal clk : std_logic := '0';
    signal address : std_logic_vector(31 downto 0) := (others => '0');
    signal reset : std_logic := '0';
 
@@ -27,26 +27,26 @@ ARCHITECTURE behavior OF tb_instructionMemory IS
    signal outInstruction : std_logic_vector(31 downto 0);
 
    -- Clock period definitions
-   constant clk_period : time := 10 ns;
+   --constant clk_period : time := 10 ns;
  
 BEGIN
  
 	-- Instantiate the Unit Under Test (UUT)
-   uut: instructionMemory PORT MAP (
-          clk => clk,
+   utt: instructionMemory PORT MAP (
+          --clk => clk,
           address => address,
           reset => reset,
           outInstruction => outInstruction
         );
 
    -- Clock process definitions
-   clk_process :process
-   begin
-		clk <= '0';
-		wait for clk_period/2;
-		clk <= '1';
-		wait for clk_period/2;
-   end process;
+   --clk_process :process
+   --begin
+	--	clk <= '0';
+	--	wait for clk_period/2;
+	--	clk <= '1';
+	--	wait for clk_period/2;
+   --end process;
  
 
    -- Stimulus process

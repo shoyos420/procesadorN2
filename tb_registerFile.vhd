@@ -12,7 +12,8 @@ ARCHITECTURE behavior OF tb_registerFile IS
     COMPONENT registerFile
     PORT(
          reset : IN  std_logic;
-         registerSource1 : IN  std_logic_vector(4 downto 0);
+         clkFPGA : IN  std_logic;
+			registerSource1 : IN  std_logic_vector(4 downto 0);
          registerSource2 : IN  std_logic_vector(4 downto 0);
          registerDestination : IN  std_logic_vector(4 downto 0);
          writeEnable : IN  std_logic;
@@ -24,8 +25,10 @@ ARCHITECTURE behavior OF tb_registerFile IS
     
 
    --Inputs
-   signal reset : std_logic := '0';
-   signal registerSource1 : std_logic_vector(4 downto 0) := (others => '0');
+   
+	signal reset : std_logic := '0';
+   signal clkFPGA : std_logic := '0';
+	signal registerSource1 : std_logic_vector(4 downto 0) := (others => '0');
    signal registerSource2 : std_logic_vector(4 downto 0) := (others => '0');
    signal registerDestination : std_logic_vector(4 downto 0) := (others => '0');
    signal writeEnable : std_logic := '0';
@@ -34,16 +37,17 @@ ARCHITECTURE behavior OF tb_registerFile IS
  	--Outputs
    signal contentRegisterSource1 : std_logic_vector(31 downto 0);
    signal contentRegisterSource2 : std_logic_vector(31 downto 0);
-   -- No clocks detected in port list. Replace <clock> below with 
-   -- appropriate port name 
- 
+   
+	-- Clock period definitions
+   constant clk_period : time := 10 ns;
  
 BEGIN
  
 	-- Instantiate the Unit Under Test (UUT)
    uut: registerFile PORT MAP (
           reset => reset,
-          registerSource1 => registerSource1,
+          clkFPGA => clkFPGA,
+			 registerSource1 => registerSource1,
           registerSource2 => registerSource2,
           registerDestination => registerDestination,
           writeEnable => writeEnable,
@@ -52,8 +56,15 @@ BEGIN
           contentRegisterSource2 => contentRegisterSource2
         );
 
-   -- Clock process definitions
-
+   clk_process :process
+   begin
+		clkFPGA  <= '0';
+		wait for clk_period/2;
+		clkFPGA  <= '1';
+		wait for clk_period/2;
+   end process;
+	
+	
    -- Stimulus process
    stim_proc: process
    begin		
@@ -80,6 +91,8 @@ BEGIN
 		writeEnable <= '0';
 		registerSource1 <= "00010";
 		
+		wait for 100 ns;
+		reset<= '1';
 
       wait;
    end process;

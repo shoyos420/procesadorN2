@@ -1,12 +1,12 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
-entity procesadorN2_top is
+entity procesador2_top is
     Port ( clk : in  STD_LOGIC;
            reset : in  STD_LOGIC;
            sum1 : in  STD_LOGIC_VECTOR (31 downto 0);
            ALUresult : out  STD_LOGIC_VECTOR (31 downto 0));
-end procesadorN2_top;
+end procesador2_top;
 
 architecture Behavioral of procesador2_top is
 
@@ -48,7 +48,7 @@ end component;
 component nPC
     Port ( address : in  STD_LOGIC_VECTOR (31 downto 0);
 			  reset : in  STD_LOGIC;
-           clkFPGA : in  STD_LOGIC;
+           clk : in  STD_LOGIC;
            nextInstruction : out  STD_LOGIC_VECTOR (31 downto 0));
 end component;
 
