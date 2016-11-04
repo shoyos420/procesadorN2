@@ -48,7 +48,7 @@ end component;
 component nPC
     Port ( address : in  STD_LOGIC_VECTOR (31 downto 0);
 			  reset : in  STD_LOGIC;
-           clk : in  STD_LOGIC;
+           clkFPGA : in  STD_LOGIC;
            nextInstruction : out  STD_LOGIC_VECTOR (31 downto 0));
 end component;
 
@@ -78,8 +78,8 @@ component Control
            ALUOP : out  STD_LOGIC_VECTOR (5 downto 0));
 end component;
 
-signal npcOUT, adderOUT, pcOUT, IMout,dtw,crs1,crs2,SEUout,ALUcrs2: std_logic_vector(31 downto 0);
-signal wr : std_logic;
+signal npcOUT, adderOUT, pcOUT, imOUT,dtw,crs1,crs2,seuOUT,muxOUT: std_logic_vector(31 downto 0);
+signal data : std_logic;
 signal UCout : std_logic_vector(5 downto 0);
 
 
@@ -99,27 +99,27 @@ PC_map : PC port map(
 );
 
 instrctionMemory_map : instructionMemory port map(
-	 pcOUT, reset, IMout
+	 pcOUT, reset, imOUT
 );
 
 Control_map : Control port map(
-	IMout(31 downto 30),IMout(24 downto 19), wr, UCout
+	imOUT(31 downto 30),imOUT(24 downto 19), data, UCout
 );
 
 registerFile_map : registerFile port map(
-	clk,reset, IMout(18 downto 14), IMout(4 downto 0), IMout(29 downto 25), wr, dtw,crs1,crs2
+	clk,reset, imOUT(18 downto 14), imOUT(4 downto 0), imOUT(29 downto 25), data, dtw,crs1,crs2
 );
 
 signExtensionUnit_map : signExtensionUnit port map(
-	IMout(12 downto 0), SEUout
+	imOUT(12 downto 0), seuOUT
 );
 
 mALU_map : mALU port map(
-	crs2, SEUout, IMout(13), ALUcrs2
+	crs2, seuOUT, imOUT(13), muxOUT
 );
 
 ALU_map : ALU port map(
-	crs1, ALUcrs2, UCout,dtw
+	crs1, muxOUT, UCout,dtw
 );
 
 ALUresult <= dtw;
