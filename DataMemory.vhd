@@ -1,9 +1,36 @@
+----------------------------------------------------------------------------------
+-- Company: 
+-- Engineer: 
+-- 
+-- Create Date:    13:34:55 11/12/2012 
+-- Design Name: 
+-- Module Name:    dataMemory - arqDataMemory 
+-- Project Name: 
+-- Target Devices: 
+-- Tool versions: 
+-- Description: 
+--
+-- Dependencies: 
+--
+-- Revision: 
+-- Revision 0.01 - File Created
+-- Additional Comments: 
+--
+----------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
+-- Uncomment the following library declaration if using
+-- arithmetic functions with Signed or Unsigned values
+--use IEEE.NUMERIC_STD.ALL;
 
-entity DataMemory is
+-- Uncomment the following library declaration if instantiating
+-- any Xilinx primitives in this code.
+--library UNISIM;
+--use UNISIM.VComponents.all;
+
+entity dataMemory is
     Port ( clk : in  STD_LOGIC;
 			  enableMem : in  STD_LOGIC;
 			  reset : in STD_LOGIC;
@@ -11,9 +38,9 @@ entity DataMemory is
            address : in STD_LOGIC_VECTOR (31 downto 0);				
            wrEnMem : in  STD_LOGIC;
            datoMem : out  STD_LOGIC_VECTOR (31 downto 0));
-end DataMemory;
+end dataMemory;
 
-architecture arqDataMemory of DataMemory is
+architecture arqDataMemory of dataMemory is
 	type ram_type is array (0 to 63) of std_logic_vector (31 downto 0);
 	signal ramMemory : ram_type:=(others => x"00000000");
 begin
