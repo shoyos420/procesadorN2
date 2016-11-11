@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date:    09:16:06 10/28/2012 
+-- Create Date:    14:35:10 05/23/2013 
 -- Design Name: 
--- Module Name:    PC - arqPC 
+-- Module Name:    muxALU - arqMuxALU 
 -- Project Name: 
 -- Target Devices: 
 -- Tool versions: 
@@ -29,25 +29,27 @@ use IEEE.STD_LOGIC_1164.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity PC is
-    Port ( address : in  STD_LOGIC_VECTOR (31 downto 0);
-           clkFPGA : in  STD_LOGIC;
-			  reset : in  STD_LOGIC;
-           nextInstruction : out  STD_LOGIC_VECTOR (31 downto 0));
-end PC;
+entity muxALU is
+    Port ( Crs2 : in  STD_LOGIC_VECTOR (31 downto 0);
+           SEUOperando : in  STD_LOGIC_VECTOR (31 downto 0);
+           selImmediate : in  STD_LOGIC;
+           OperandoALU : out  STD_LOGIC_VECTOR (31 downto 0));
+end muxALU;
 
-architecture arqPC of PC is
+architecture arqMuxALU of muxALU is
 
 begin
-	process(clkFPGA)
+
+	process(Crs2,SEUOperando,selImmediate)
 	begin
-		if(rising_edge(clkFPGA))then
-			if(reset = '1')then
-				nextInstruction <= (others=>'0');
-			else
-				nextInstruction <= address;
+		if(selImmediate = '1')then
+			OperandoALU <= SEUOperando;
+		else
+			if(selImmediate = '0')then
+				OperandoALU <= Crs2;
 			end if;
 		end if;
 	end process;
-end arqPC;
+
+end arqMuxALU;
 

@@ -32,10 +32,10 @@ USE ieee.std_logic_1164.ALL;
 -- arithmetic functions with Signed or Unsigned values
 --USE ieee.numeric_std.ALL;
  
-ENTITY tb_InstructionMemory IS
-END tb_InstructionMemory;
+ENTITY tbInstructionMemory IS
+END tbInstructionMemory;
  
-ARCHITECTURE behavior OF tb_InstructionMemory IS 
+ARCHITECTURE behavior OF tbInstructionMemory IS 
  
     -- Component Declaration for the Unit Under Test (UUT)
  

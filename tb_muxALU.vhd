@@ -12,14 +12,14 @@ LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
 
  
-ENTITY tb_mALU IS
-END tb_mALU;
+ENTITY tb_muxALU IS
+END tb_muxALU;
  
-ARCHITECTURE behavior OF tb_mALU IS 
+ARCHITECTURE behavior OF tb_muxALU IS 
  
     -- Component Declaration for the Unit Under Test (UUT)
  
-    COMPONENT mALU
+    COMPONENT muxALU
     PORT(
          Crs2 : IN  std_logic_vector(31 downto 0);
          SEUOperando : IN  std_logic_vector(31 downto 0);
@@ -43,7 +43,7 @@ ARCHITECTURE behavior OF tb_mALU IS
 BEGIN
  
 	-- Instantiate the Unit Under Test (UUT)
-   uut: mALU PORT MAP (
+   uut: muxALU PORT MAP (
           Crs2 => Crs2,
           SEUOperando => SEUOperando,
           selImmediate => selImmediate,

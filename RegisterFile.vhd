@@ -1,26 +1,41 @@
+----------------------------------------------------------------------------------
+-- Company: 
+-- Engineer: 
+-- 
+-- Create Date:    09:39:26 10/28/2012 
+-- Design Name: 
+-- Module Name:    registerFile - arqRegisterFile 
+-- Project Name: 
+-- Target Devices: 
+-- Tool versions: 
+-- Description: 
+--
+-- Dependencies: 
+--
+-- Revision: 
+-- Revision 0.01 - File Created
+-- Additional Comments: 
+--
+----------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
-entity RegisterFile is
+entity registerFile is
     Port ( clkFPGA : in  STD_LOGIC;
            reset : in  STD_LOGIC;
-           registerSource1 : in  STD_LOGIC_VECTOR (4 downto 0);
-           registerSource2 : in  STD_LOGIC_VECTOR (4 downto 0);
-           registerDestination : in  STD_LOGIC_VECTOR (4 downto 0);
+           registerSource1 : in  STD_LOGIC_VECTOR (5 downto 0);
+           registerSource2 : in  STD_LOGIC_VECTOR (5 downto 0);
+           registerDestination : in  STD_LOGIC_VECTOR (5 downto 0);
            writeEnable : in  STD_LOGIC;
 			  dataToWrite : in STD_LOGIC_VECTOR (31 downto 0);
            contentRegisterSource1 : out  STD_LOGIC_VECTOR (31 downto 0);
            contentRegisterSource2 : out  STD_LOGIC_VECTOR (31 downto 0));
-end RegisterFile;
+end registerFile;
 
-architecture arqRegisterFile of RegisterFile is
+architecture arqRegisterFile of registerFile is
 
 	type ram_type is array (0 to 39) of std_logic_vector (31 downto 0);   --(others => x"00000000")
-	--signal registers : ram_type :=(others => x"00000000");-- definicion de los registros en 0
-	
-	
-	-- registros detallados para el tb
 	signal registers : ram_type :=(x"00000000",x"00000000",x"00000000",x"00000000",
 											 x"00000000",x"00000000",x"00000000",x"00000000",
 											 x"00000000",x"00000000",x"00000000",x"00000000",
@@ -53,3 +68,4 @@ begin
 		--end if;
 	end process;
 end arqRegisterFile;
+
